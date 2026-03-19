@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>ℕ𝕒𝕦𝕘𝕙𝕥𝕪 ONLY VIDEO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<style>
+  :root {
+    --velvet: #8B0000;
+    --velvet-light: #B22222;
+    --velvet-glow: #CC0000;
+    --gold: #D4AF37;
+    --gold-light: #F5E27A;
+    --black: #050505;
+    --dark: #0D0D0D;
+    --dark2: #141414;
+    --dark3: #1C1C1C;
+    --glass: rgba(139,0,0,0.12);
+    --glass2: rgba(255,255,255,0.05);
+    --text: #F0E6E6;
+    --muted: #888;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 3px; height: 3px; }
+  ::-webkit-scrollbar-track { background: var(--dark); }
+  ::-webkit-scrollbar-thumb { background: var(--velvet); border-radius: 99px; }
+
+  /* Header */
+  #app-header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: linear-gradient(180deg, rgba(5,5,5,0.98) 0%, rgba(5,5,5,0.0) 100%);
+    backdrop-filter: blur(0px);
+    transition: backdrop-filter 0.3s, background 0.3s;
+    padding: 14px 16px;
+  }
+  #app-header.scrolled {
+    backdrop-filter: blur(20px);
+    background: rgba(5,5,5,0.92);
+    border-bottom: 1px solid rgba(139,0,0,0.3);
+  }
+  .app-name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 1.15rem;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, var(--velvet-glow), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+  }
+  .app-sub { font-size: 0.55rem; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; }
+  .owner-badge {
+    display: flex; align-items: center; gap: 7px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50px;
+    padding: 5px 10px 5px 5px;
+    background: rgba(212,175,55,0.08);
+    font-size: 0.68rem;
+    color: var(--gold-light);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .owner-avatar {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--velvet), var(--gold));
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* Hero */
+  #hero {
+    margin-top: 68px;
+    position: relative;
+    min-height: 260px;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #1a0000 0%, var(--black) 60%);
+  }
+  .hero-bg::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(139,0,0,0.4) 0%, transparent 70%);
+  }
+  .hero-thumb {
+    position: absolute; right: -20px; top: 0; bottom: 0; width: 65%;
+    object-fit: cover; opacity: 0.45;
+    mask-image: linear-gradient(to left, rgba(0,0,0,0.7), transparent);
+    -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.7), transparent);
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 28px 20px 24px;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: var(--velvet); border-radius: 4px;
+    padding: 3px 8px; font-size: 0.6rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px;
+    color: #fff;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 700; line-height: 1.2;
+    margin-bottom: 6px; max-width: 60%;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.8);
+  }
+  .hero-meta { font-size: 0.7rem; color: var(--muted); margin-bottom: 16px; display: flex; gap: 10px; align-items: center; }
+  .hero-meta span { display: flex; align-items: center; gap: 4px; }
+  .watch-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 20px; border-radius: 50px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #fff; font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 0.05em;
+    cursor: pointer; transition: all 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .watch-btn::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(139,0,0,0.5), rgba(212,175,55,0.2));
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .watch-btn:active::before { opacity: 1; }
+  .watch-btn:active { transform: scale(0.97); }
+
+  /* Nav Tabs */
+  #nav-tabs {
+    display: flex; gap: 8px; padding: 12px 16px;
+    overflow-x: auto; scrollbar-width: none;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    position: sticky; top: 68px; z-index: 90;
+    background: rgba(5,5,5,0.95); backdrop-filter: blur(20px);
+  }
+  #nav-tabs::-webkit-scrollbar { display: none; }
+  .nav-tab {
+    flex-shrink: 0; padding: 6px 14px; border-radius: 50px;
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.04em;
+    cursor: pointer; transition: all 0.2s;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--muted); background: transparent;
+    white-space: nowrap;
+  }
+  .nav-tab.active {
+    background: var(--velvet); border-color: var(--velvet);
+    color: #fff;
+    box-shadow: 0 0 16px rgba(139,0,0,0.5);
+  }
+
+  /* Bottom Nav */
+  #bottom-nav {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(13,13,13,0.95); backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(139,0,0,0.25);
+    display: flex; align-items: center;
+    padding: 10px 0 14px;
+  }
+  .bnav-item {
+    flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px;
+    cursor: pointer; color: var(--muted); transition: color 0.2s;
+    font-size: 0.6rem; font-weight: 500; letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .bnav-item.active { color: var(--velvet-glow); }
+  .bnav-item svg { width: 20px; height: 20px; }
+
+  /* Section */
+  .section { padding: 20px 0 10px; }
+  .section-header { display: flex; align-items: center; justify-content: space-between; padding: 0 16px; margin-bottom: 12px; }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; font-weight: 700;
+    background: linear-gradient(90deg, #fff, rgba(255,255,255,0.6));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .see-all { font-size: 0.68rem; color: var(--velvet-glow); font-weight: 500; cursor: pointer; }
+
+  /* Horizontal Scroll */
+  .h-scroll { display: flex; gap: 12px; padding: 0 16px; overflow-x: auto; scrollbar-width: none; padding-bottom: 8px; }
+  .h-scroll::-webkit-scrollbar { display: none; }
+
+  /* Video Card */
+  .video-card {
+    flex-shrink: 0; width: 200px; border-radius: 10px; overflow: hidden;
+    background: var(--dark2);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+    cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid rgba(139,0,0,0.15);
+  }
+  .video-card:active { transform: scale(0.97); box-shadow: 0 2px 10px rgba(0,0,0,0.8); }
+  .video-thumb-wrap {
+    position: relative; aspect-ratio: 16/9; overflow: hidden;
+    background: linear-gradient(135deg, #1a0000, #0d0d0d);
+  }
+  .video-thumb { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .thumb-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, rgba(139,0,0,0.3), rgba(13,13,13,0.9));
+  }
+  .play-overlay {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0,0,0,0.3);
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .video-card:hover .play-overlay { opacity: 1; }
+  .play-icon-circle {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(139,0,0,0.9); display: flex; align-items: center; justify-content: center;
+    border: 2px solid rgba(255,255,255,0.4);
+  }
+  .duration-badge {
+    position: absolute; bottom: 6px; right: 6px;
+    background: rgba(0,0,0,0.8); border-radius: 4px;
+    padding: 2px 5px; font-size: 0.6rem; font-weight: 600; color: #fff;
+  }
+  .views-badge {
+    position: absolute; bottom: 6px; left: 6px;
+    display: flex; align-items: center; gap: 3px;
+    background: rgba(0,0,0,0.8); border-radius: 4px;
+    padding: 2px 5px; font-size: 0.6rem; color: rgba(255,255,255,0.8);
+  }
+  .video-info { padding: 8px 10px 10px; }
+  .video-title { font-size: 0.75rem; font-weight: 500; line-height: 1.3; margin-bottom: 4px; color: var(--text); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .video-date { font-size: 0.62rem; color: var(--muted); }
+
+  /* Product Card */
+  .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 0 16px; }
+  .product-card {
+    border-radius: 12px; overflow: hidden;
+    background: var(--dark2);
+    border: 1px solid rgba(212,175,55,0.15);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    cursor: pointer; transition: transform 0.2s;
+  }
+  .product-card:active { transform: scale(0.97); }
+  .product-thumb-wrap { position: relative; aspect-ratio: 1/1; overflow: hidden; }
+  .product-thumb { width: 100%; height: 100%; object-fit: cover; }
+  .product-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.8) 100%);
+  }
+  .price-tag {
+    position: absolute; top: 8px; right: 8px;
+    background: linear-gradient(135deg, var(--velvet), #5a0000);
+    border-radius: 6px; padding: 4px 8px;
+    font-size: 0.72rem; font-weight: 700; color: #fff;
+    border: 1px solid rgba(212,175,55,0.3);
+    box-shadow: 0 2px 8px rgba(139,0,0,0.5);
+  }
+  .product-info { padding: 10px; }
+  .product-name { font-size: 0.75rem; font-weight: 600; margin-bottom: 6px; color: var(--text); line-height: 1.3; }
+  .order-btn {
+    width: 100%; padding: 7px;
+    background: linear-gradient(135deg, var(--gold), #B8860B);
+    border-radius: 6px; font-size: 0.7rem; font-weight: 700;
+    color: var(--black); text-align: center; letter-spacing: 0.05em;
+    text-transform: uppercase; border: none; cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .order-btn:active { opacity: 0.8; }
+
+  /* Modal Player */
+  #player-modal {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,0.95);
+    display: none; flex-direction: column;
+    animation: fadeIn 0.25s ease;
+  }
+  #player-modal.open { display: flex; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .player-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px; flex-shrink: 0;
+    border-bottom: 1px solid rgba(139,0,0,0.2);
+    background: rgba(13,13,13,0.8);
+  }
+  .player-title-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem; flex: 1; margin: 0 12px;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .close-btn {
+    width: 34px; height: 34px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(139,0,0,0.3); border: 1px solid rgba(139,0,0,0.5);
+    cursor: pointer; flex-shrink: 0; transition: background 0.2s;
+  }
+  .close-btn:active { background: var(--velvet); }
+  .player-wrap {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    overflow: hidden; background: #000; position: relative;
+  }
+  #main-video {
+    width: 100%; max-height: 100%;
+    background: #000;
+  }
+  .player-info {
+    padding: 14px 16px; background: var(--dark);
+    border-top: 1px solid rgba(139,0,0,0.15); flex-shrink: 0;
+  }
+  .player-desc { font-size: 0.75rem; color: var(--muted); line-height: 1.5; max-height: 80px; overflow-y: auto; }
+
+  /* Search Bar */
+  .search-bar {
+    margin: 12px 16px;
+    display: flex; align-items: center; gap: 10px;
+    background: var(--dark2); border-radius: 10px;
+    padding: 10px 14px; border: 1px solid rgba(139,0,0,0.2);
+  }
+  .search-bar input {
+    flex: 1; background: transparent; border: none; outline: none;
+    color: var(--text); font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+  }
+  .search-bar input::placeholder { color: var(--muted); }
+
+  /* Loading Spinner */
+  .spinner {
+    display: inline-block; width: 22px; height: 22px;
+    border: 2px solid rgba(139,0,0,0.3);
+    border-top-color: var(--velvet-glow);
+    border-radius: 50%; animation: spin 0.7s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Empty State */
+  .empty-state {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 40px 20px; gap: 12px; color: var(--muted); text-align: center;
+  }
+  .empty-state p { font-size: 0.8rem; }
+
+  /* Glow divider */
+  .glow-divider {
+    height: 1px; margin: 4px 16px;
+    background: linear-gradient(90deg, transparent, var(--velvet), transparent);
+  }
+
+  /* Screen pages */
+  .screen { display: none; padding-bottom: 80px; }
+  .screen.active { display: block; }
+
+  /* Animated gradient bg for store */
+  .store-header-bg {
+    position: relative; overflow: hidden;
+    background: linear-gradient(135deg, rgba(139,0,0,0.15), rgba(212,175,55,0.05), rgba(139,0,0,0.1));
+    padding: 20px 16px 14px;
+    border-bottom: 1px solid rgba(212,175,55,0.1);
+    margin-bottom: 16px;
+  }
+  .store-header-bg::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 80% 50%, rgba(212,175,55,0.1), transparent 70%);
+  }
+  .store-title-big {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 900;
+    background: linear-gradient(135deg, var(--gold), var(--velvet-glow));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    position: relative; z-index: 1;
+  }
+  .store-subtitle { font-size: 0.72rem; color: var(--muted); margin-top: 2px; position: relative; z-index: 1; }
+
+  /* Skeleton loader */
+  .skeleton {
+    background: linear-gradient(90deg, var(--dark2) 25%, var(--dark3) 50%, var(--dark2) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 8px;
+  }
+  @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+  /* Tag chips */
+  .tag-chip {
+    display: inline-block; padding: 2px 7px; border-radius: 4px;
+    font-size: 0.58rem; font-weight: 600; letter-spacing: 0.08em;
+    background: rgba(139,0,0,0.25); color: var(--velvet-glow);
+    border: 1px solid rgba(139,0,0,0.3); text-transform: uppercase;
+  }
+
+  /* Notification toast */
+  #toast {
+    position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: var(--dark3); border: 1px solid var(--velvet);
+    border-radius: 8px; padding: 10px 18px;
+    font-size: 0.75rem; color: var(--text);
+    opacity: 0; transition: all 0.3s; z-index: 300; white-space: nowrap;
+    box-shadow: 0 4px 20px rgba(139,0,0,0.4);
+  }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="app-header">
+  <div style="display:flex;align-items:center;justify-content:space-between;">
+    <div>
+      <div class="app-name">ℕ𝕒𝕦𝕘𝕙𝕥𝕪 ONLY VIDEO</div>
+      <div class="app-sub">Premium Exclusive Content</div>
+    </div>
+    <div class="owner-badge">
+      <div class="owner-avatar">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+      </div>
+      @TheSecretKeeper_Owner
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div id="hero">
+  <div class="hero-bg"></div>
+  <img id="hero-thumb" class="hero-thumb" src="" alt="" style="display:none"/>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+      PINNED
+    </div>
+    <div class="hero-title" id="hero-title">Loading Latest...</div>
+    <div class="hero-meta">
+      <span id="hero-views"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> —</span>
+      <span id="hero-date"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> —</span>
+    </div>
+    <button class="watch-btn" id="hero-btn" onclick="heroPlay()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      Watch Now
+    </button>
+  </div>
+</div>
+
+<!-- NAV TABS -->
+<div id="nav-tabs">
+  <div class="nav-tab active" data-filter="all" onclick="filterContent('all',this)">All</div>
+  <div class="nav-tab" data-filter="trending" onclick="filterContent('trending',this)">Trending</div>
+  <div class="nav-tab" data-filter="new" onclick="filterContent('new',this)">New</div>
+  <div id="dynamic-tabs"></div>
+</div>
+
+<!-- MAIN CONTENT PAGES -->
+<main id="main-content">
+
+  <!-- HOME SCREEN -->
+  <div id="screen-home" class="screen active">
+    <div id="video-section" class="section">
+      <div class="section-header">
+        <div class="section-title">Latest Videos</div>
+        <div class="see-all" onclick="switchTab('videos')">See All</div>
+      </div>
+      <div id="video-scroll" class="h-scroll">
+        <!-- Skeleton loaders -->
+        <div class="video-card skeleton" style="height:170px;"></div>
+        <div class="video-card skeleton" style="height:170px;"></div>
+        <div class="video-card skeleton" style="height:170px;"></div>
+      </div>
+    </div>
+    <div class="glow-divider"></div>
+    <div id="store-preview-section" class="section">
+      <div class="section-header">
+        <div class="section-title">Store Highlights</div>
+        <div class="see-all" onclick="switchTab('store')">View Store</div>
+      </div>
+      <div id="store-preview-scroll" class="h-scroll">
+        <div class="video-card skeleton" style="height:200px;"></div>
+        <div class="video-card skeleton" style="height:200px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIDEOS SCREEN -->
+  <div id="screen-videos" class="screen">
+    <div class="section" style="padding-top:14px;">
+      <div class="search-bar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="video-search" placeholder="Search videos..." oninput="searchVideos(this.value)"/>
+      </div>
+      <div id="video-grid" class="h-scroll" style="flex-wrap:wrap; overflow-x:hidden; padding:0 16px; gap:12px; display:grid; grid-template-columns:repeat(2,1fr);">
+        <div class="skeleton" style="height:160px;border-radius:10px;"></div>
+        <div class="skeleton" style="height:160px;border-radius:10px;"></div>
+        <div class="skeleton" style="height:160px;border-radius:10px;"></div>
+        <div class="skeleton" style="height:160px;border-radius:10px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORE SCREEN -->
+  <div id="screen-store" class="screen">
+    <div class="store-header-bg">
+      <div class="store-title-big">Exclusive Store</div>
+      <div class="store-subtitle">Premium products • Direct from owner</div>
+    </div>
+    <div id="product-grid" class="product-grid">
+      <div class="skeleton" style="height:220px;border-radius:12px;"></div>
+      <div class="skeleton" style="height:220px;border-radius:12px;"></div>
+      <div class="skeleton" style="height:220px;border-radius:12px;"></div>
+      <div class="skeleton" style="height:220px;border-radius:12px;"></div>
+    </div>
+  </div>
+
+  <!-- SEARCH SCREEN -->
+  <div id="screen-search" class="screen">
+    <div style="padding:16px 16px 0;">
+      <div class="search-bar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="main-search" placeholder="Search everything..." oninput="globalSearch(this.value)" autofocus/>
+      </div>
+    </div>
+    <div id="search-results" class="section" style="padding-top:8px;">
+      <div class="empty-state">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <p>Start typing to search videos & products</p>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- BOTTOM NAV -->
+<nav id="bottom-nav">
+  <div class="bnav-item active" id="bnav-home" onclick="switchTab('home')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Home
+  </div>
+  <div class="bnav-item" id="bnav-videos" onclick="switchTab('videos')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+    Videos
+  </div>
+  <div class="bnav-item" id="bnav-store" onclick="switchTab('store')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    Store
+  </div>
+  <div class="bnav-item" id="bnav-search" onclick="switchTab('search')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    Search
+  </div>
+</nav>
+
+<!-- VIDEO PLAYER MODAL -->
+<div id="player-modal">
+  <div class="player-header">
+    <div class="close-btn" onclick="closePlayer()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </div>
+    <div class="player-title-text" id="modal-title">Now Playing</div>
+    <div style="width:34px;"></div>
+  </div>
+  <div class="player-wrap">
+    <video id="main-video" controls playsinline webkit-playsinline preload="metadata">
+      <source id="video-src" src="" type="video/mp4"/>
+      Your browser does not support video.
+    </video>
+  </div>
+  <div class="player-info">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+      <span class="tag-chip" id="modal-tag">VIDEO</span>
+      <span style="font-size:0.7rem;color:var(--muted);" id="modal-meta"></span>
+    </div>
+    <div class="player-desc" id="modal-desc"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<script>
+const BOT_TOKEN = '7799376107:AAHXab1ButCbqSB6UaFH2ebHxQvE16tuSIo';
+const CHANNEL_ID = '-1003710195218';
+const PROXY = 'https://corsproxy.io/?';
+const OWNER_LINK = 'https://t.me/TheSecretKeeper_Owner';
+const API_BASE = `https://api.telegram.org/bot${BOT_TOKEN}`;
+const FILE_API = `https://api.telegram.org/file/bot${BOT_TOKEN}/`;
+
+let allMessages = [];
+let videoMessages = [];
+let productMessages = [];
+let pinnedMessage = null;
+let currentVideoUrl = '';
+let currentFilter = 'all';
+
+// ─── UTILS ──────────────────────────────────────────────────────────────────
+
+function gdriveDirect(url) {
+  if (!url) return url;
+  const m = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+  if (m) return `https://drive.google.com/uc?export=download&id=${m[1]}`;
+  const m2 = url.match(/id=([a-zA-Z0-9_-]+)/);
+  if (m2) return `https://drive.google.com/uc?export=download&id=${m2[1]}`;
+  return url;
+}
+
+function extractVideoUrl(text) {
+  if (!text) return null;
+  const gdriveRe = /https?:\/\/(drive\.google\.com\/[^\s]+|docs\.google\.com\/[^\s]+)/gi;
+  const gdm = text.match(gdriveRe);
+  if (gdm) return gdriveDirect(gdm[0]);
+  const urlRe = /https?:\/\/[^\s]+\.(mp4|webm|ogg|mov|m4v)(\?[^\s]*)?/gi;
+  const um = text.match(urlRe);
+  if (um) return um[0];
+  const anyUrl = /https?:\/\/[^\s]+/gi;
+  const am = text.match(anyUrl);
+  if (am) return am[0];
+  return null;
+}
+
+function extractPrice(text) {
+  if (!text) return null;
+  const m = text.match(/(?:price|cost|₦|₹|\$|€|£)?[\s:]*([₦₹$€£]?\d[\d,]*(?:\.\d{1,2})?)/i);
+  return m ? m[1] : null;
+}
+
+function formatDate(unixTs) {
+  const d = new Date(unixTs * 1000);
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+function formatViews(n) {
+  if (!n) return '0';
+  if (n >= 1000000) return (n/1000000).toFixed(1) + 'M';
+  if (n >= 1000) return (n/1000).toFixed(1) + 'K';
+  return n.toString();
+}
+
+function cleanCaption(text) {
+  if (!text) return '';
+  return text.replace(/#\w+/g, '').replace(/https?:\/\/\S+/g, '').trim();
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ─── API ─────────────────────────────────────────────────────────────────────
+
+async function tgFetch(method, params = {}) {
+  const qs = new URLSearchParams(params).toString();
+  const url = `${PROXY}${encodeURIComponent(`${API_BASE}/${method}?${qs}`)}`;
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  return r.json();
+}
+
+async function getFileUrl(fileId) {
+  try {
+    const data = await tgFetch('getFile', { file_id: fileId });
+    if (data.ok) return FILE_API + data.result.file_path;
+  } catch(e) { console.warn('getFile error', e); }
+  return null;
+}
+
+async function loadMessages() {
+  try {
+    const data = await tgFetch('getUpdates', {
+      chat_id: CHANNEL_ID,
+      limit: 100,
+      allowed_updates: JSON.stringify(['channel_post'])
+    });
+    let messages = [];
+    if (data.ok && data.result) {
+      messages = data.result
+        .filter(u => u.channel_post)
+        .map(u => u.channel_post)
+        .reverse();
+    }
+    if (!messages.length) {
+      const hist = await tgFetch('getChatHistory', { chat_id: CHANNEL_ID, limit: 50 });
+      if (hist.ok) messages = hist.result.messages || [];
+    }
+    return messages;
+  } catch (e) {
+    console.error('loadMessages error', e);
+    return [];
+  }
+}
+
+async function loadChannelMessages() {
+  try {
+    // Try forwardMessages approach — fetch recent posts
+    const chatInfo = await tgFetch('getChat', { chat_id: CHANNEL_ID });
+    console.log('Chat info:', chatInfo);
+  } catch(e) { /* ignore */ }
+
+  // Primary: use bot's received updates
+  const updates = await tgFetch('getUpdates', { limit: 100, offset: -100 });
+  let msgs = [];
+  if (updates.ok && updates.result) {
+    msgs = updates.result
+      .filter(u => u.channel_post && String(u.channel_post.chat.id) === String(CHANNEL_ID))
+      .map(u => u.channel_post);
+  }
+  return msgs;
+}
+
+async function getPinnedMessage() {
+  try {
+    const data = await tgFetch('getChat', { chat_id: CHANNEL_ID });
+    if (data.ok && data.result.pinned_message) return data.result.pinned_message;
+  } catch(e) { console.warn('getPinned error', e); }
+  return null;
+}
+
+// ─── PARSE ──────────────────────────────────────────────────────────────────
+
+function parseMessage(msg) {
+  const text = msg.caption || msg.text || '';
+  const tags = (text.match(/#\w+/g) || []).map(t => t.toLowerCase());
+  const isVideo = tags.includes('#video') || msg.video || msg.animation;
+  const isProduct = tags.includes('#product') || tags.includes('#store') || tags.includes('#shop') || tags.includes('#sale');
+  return { msg, text, tags, isVideo, isProduct };
+}
+
+// ─── THUMBNAIL ───────────────────────────────────────────────────────────────
+
+async function getThumbnail(msg) {
+  if (msg.photo && msg.photo.length) {
+    const best = msg.photo[msg.photo.length - 1];
+    return await getFileUrl(best.file_id);
+  }
+  if (msg.video && msg.video.thumb) return await getFileUrl(msg.video.thumb.file_id);
+  if (msg.document && msg.document.thumb) return await getFileUrl(msg.document.thumb.file_id);
+  return null;
+}
+
+// ─── BUILD CARDS ─────────────────────────────────────────────────────────────
+
+function buildVideoCard(msg, thumb, isHero = false) {
+  const text = msg.caption || msg.text || '';
+  const title = cleanCaption(text) || 'Untitled Video';
+  const views = msg.views || msg.forward_count || null;
+  const date = formatDate(msg.date);
+  const videoUrl = extractVideoUrl(text);
+  const msgId = msg.message_id || msg.id;
+
+  if (isHero) {
+    document.getElementById('hero-title').textContent = title.substring(0,60) + (title.length>60?'…':'');
+    document.getElementById('hero-views').innerHTML = `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> ${formatViews(views)}`;
+    document.getElementById('hero-date').innerHTML = `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> ${date}`;
+    if (thumb) {
+      const img = document.getElementById('hero-thumb');
+      img.src = thumb; img.style.display = 'block';
+    }
+    document.getElementById('hero-btn').dataset.msgId = msgId;
+    document.getElementById('hero-btn').dataset.url = videoUrl || '';
+    document.getElementById('hero-btn').dataset.title = title;
+    document.getElementById('hero-btn').dataset.text = text;
+    return;
+  }
+
+  const card = document.createElement('div');
+  card.className = 'video-card';
+  card.dataset.title = title.toLowerCase();
+  card.dataset.filter = (msg.caption || msg.text || '').toLowerCase();
+  card.innerHTML = `
+    <div class="video-thumb-wrap">
+      ${thumb 
+        ? `<img class="video-thumb" src="${thumb}" alt="${title}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+           <div class="thumb-placeholder" style="display:none;position:absolute;inset:0;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>`
+        : `<div class="thumb-placeholder"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>`
+      }
+      <div class="play-overlay">
+        <div class="play-icon-circle">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+      </div>
+      ${views ? `<div class="views-badge"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>${formatViews(views)}</div>` : ''}
+    </div>
+    <div class="video-info">
+      <div class="video-title">${title.substring(0,80)}</div>
+      <div class="video-date">${date}</div>
+    </div>`;
+  card.onclick = () => openPlayer(videoUrl, title, text, views, date);
+  return card;
+}
+
+function buildProductCard(msg, thumb) {
+  const text = msg.caption || msg.text || '';
+  const name = cleanCaption(text) || 'Premium Product';
+  const price = extractPrice(text);
+
+  const card = document.createElement('div');
+  card.className = 'product-card';
+  card.dataset.title = name.toLowerCase();
+  card.innerHTML = `
+    <div class="product-thumb-wrap">
+      ${thumb
+        ? `<img class="product-thumb" src="${thumb}" alt="${name}" loading="lazy" onerror="this.src='';this.parentElement.style.background='linear-gradient(135deg,rgba(139,0,0,0.2),#0d0d0d)'"/>`
+        : `<div style="width:100%;height:100%;min-height:120px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(139,0,0,0.2),#0d0d0d)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg></div>`
+      }
+      <div class="product-overlay"></div>
+      ${price ? `<div class="price-tag">${price}</div>` : ''}
+    </div>
+    <div class="product-info">
+      <div class="product-name">${name.substring(0,60)}</div>
+      <button class="order-btn" onclick="orderNow(event)">Order Now</button>
+    </div>`;
+  return card;
+}
+
+function orderNow(e) {
+  e.stopPropagation();
+  window.open(OWNER_LINK, '_blank');
+}
+
+// ─── PLAYER ──────────────────────────────────────────────────────────────────
+
+function openPlayer(url, title, desc, views, date) {
+  if (!url) {
+    showToast('No video source found. Check Telegram post.');
+    return;
+  }
+  const finalUrl = gdriveDirect(url);
+  const vid = document.getElementById('main-video');
+  const src = document.getElementById('video-src');
+  document.getElementById('modal-title').textContent = title || 'Now Playing';
+  document.getElementById('modal-desc').textContent = cleanCaption(desc) || '';
+  document.getElementById('modal-meta').textContent = [
+    views ? formatViews(views) + ' views' : '',
+    date || ''
+  ].filter(Boolean).join(' · ');
+
+  src.src = finalUrl;
+  vid.load();
+  document.getElementById('player-modal').classList.add('open');
+  vid.play().catch(() => {});
+  document.body.style.overflow = 'hidden';
+}
+
+function closePlayer() {
+  const vid = document.getElementById('main-video');
+  vid.pause(); vid.src = '';
+  document.getElementById('video-src').src = '';
+  document.getElementById('player-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function heroPlay() {
+  const btn = document.getElementById('hero-btn');
+  const url = btn.dataset.url;
+  const title = btn.dataset.title;
+  const text = btn.dataset.text;
+  openPlayer(url, title, text, null, null);
+}
+
+// ─── FILTER & SEARCH ─────────────────────────────────────────────────────────
+
+function filterContent(filter, el) {
+  currentFilter = filter;
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  const cards = document.querySelectorAll('#video-scroll .video-card, #video-grid .video-card');
+  cards.forEach(c => {
+    if (filter === 'all') {
+      c.style.display = '';
+    } else if (filter === 'trending') {
+      const hasViews = c.querySelector('.views-badge');
+      c.style.display = hasViews ? '' : 'none';
+    } else if (filter === 'new') {
+      c.style.display = ''; // Show all in new, sorted by recency already
+    } else {
+      const f = c.dataset.filter || '';
+      c.style.display = f.includes('#' + filter) ? '' : 'none';
+    }
+  });
+}
+
+function searchVideos(q) {
+  const cards = document.querySelectorAll('#video-grid > *');
+  cards.forEach(c => {
+    if (!q) { c.style.display = ''; return; }
+    const t = c.dataset.title || '';
+    c.style.display = t.includes(q.toLowerCase()) ? '' : 'none';
+  });
+}
+
+function globalSearch(q) {
+  const container = document.getElementById('search-results');
+  if (!q || q.length < 2) {
+    container.innerHTML = `<div class="empty-state"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><p>Start typing to search videos & products</p></div>`;
+    return;
+  }
+  const ql = q.toLowerCase();
+  const matchedVideos = videoMessages.filter(({msg,text}) => (cleanCaption(text)||'').toLowerCase().includes(ql) || text.toLowerCase().includes(ql));
+  const matchedProducts = productMessages.filter(({msg,text}) => (cleanCaption(text)||'').toLowerCase().includes(ql));
+
+  if (!matchedVideos.length && !matchedProducts.length) {
+    container.innerHTML = `<div class="empty-state"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><p>No results for "${q}"</p></div>`;
+    return;
+  }
+
+  container.innerHTML = '';
+  if (matchedVideos.length) {
+    const sec = document.createElement('div');
+    sec.className = 'section';
+    sec.innerHTML = `<div class="section-header"><div class="section-title">Videos (${matchedVideos.length})</div></div>`;
+    const scroll = document.createElement('div');
+    scroll.className = 'h-scroll';
+    matchedVideos.forEach(({msg}) => {
+      getThumbnail(msg).then(thumb => {
+        const card = buildVideoCard(msg, thumb);
+        if(card) scroll.appendChild(card);
+      });
+    });
+    sec.appendChild(scroll);
+    container.appendChild(sec);
+  }
+  if (matchedProducts.length) {
+    const sec = document.createElement('div');
+    sec.className = 'section';
+    sec.innerHTML = `<div class="section-header"><div class="section-title">Products (${matchedProducts.length})</div></div><div class="product-grid" id="search-products"></div>`;
+    container.appendChild(sec);
+    const grid = container.querySelector('#search-products');
+    matchedProducts.forEach(({msg}) => {
+      getThumbnail(msg).then(thumb => {
+        const card = buildProductCard(msg, thumb);
+        grid.appendChild(card);
+      });
+    });
+  }
+}
+
+// ─── NAVIGATION ──────────────────────────────────────────────────────────────
+
+function switchTab(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.bnav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('screen-' + name).classList.add('active');
+  document.getElementById('bnav-' + name).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// ─── RENDER ──────────────────────────────────────────────────────────────────
+
+async function renderVideos(msgs) {
+  const scroll = document.getElementById('video-scroll');
+  const grid = document.getElementById('video-grid');
+  scroll.innerHTML = '';
+  grid.innerHTML = '';
+
+  if (!msgs.length) {
+    scroll.innerHTML = `<div class="empty-state" style="min-width:200px;"><p>No videos found</p></div>`;
+    return;
+  }
+
+  for (const {msg} of msgs.slice(0, 20)) {
+    const thumb = await getThumbnail(msg);
+    const cardH = buildVideoCard(msg, thumb);
+    const cardG = buildVideoCard(msg, thumb);
+    if (cardH) scroll.appendChild(cardH);
+    if (cardG) grid.appendChild(cardG);
+  }
+}
+
+async function renderProducts(msgs) {
+  const grid = document.getElementById('product-grid');
+  const previewScroll = document.getElementById('store-preview-scroll');
+  grid.innerHTML = '';
+  previewScroll.innerHTML = '';
+
+  if (!msgs.length) {
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;"><p>No products found</p></div>`;
+    return;
+  }
+
+  for (const {msg} of msgs.slice(0, 20)) {
+    const thumb = await getThumbnail(msg);
+    const card = buildProductCard(msg, thumb);
+    grid.appendChild(card);
+
+    // Preview card for home
+    if (previewScroll.children.length < 4) {
+      const prev = document.createElement('div');
+      prev.className = 'video-card';
+      prev.style.width = '150px';
+      prev.innerHTML = `
+        <div style="aspect-ratio:1/1;overflow:hidden;background:linear-gradient(135deg,rgba(139,0,0,0.2),#0d0d0d);">
+          ${thumb ? `<img style="width:100%;height:100%;object-fit:cover;" src="${thumb}"/>` : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/></svg></div>`}
+        </div>
+        <div style="padding:8px 10px;">
+          <div class="video-title">${(cleanCaption(msg.caption||msg.text||'')||'Product').substring(0,40)}</div>
+          <div style="font-size:0.65rem;color:var(--gold);margin-top:3px;">${extractPrice(msg.caption||msg.text||'')||''}</div>
+        </div>`;
+      prev.onclick = () => switchTab('store');
+      previewScroll.appendChild(prev);
+    }
+  }
+}
+
+function buildDynamicTabs(allParsed) {
+  const hashtags = new Set();
+  allParsed.forEach(({tags}) => tags.forEach(t => {
+    const clean = t.replace('#','');
+    if (!['video','product','store','shop','sale','trending','new','pinned'].includes(clean) && clean.length > 2) {
+      hashtags.add(clean);
+    }
+  }));
+  const container = document.getElementById('dynamic-tabs');
+  container.innerHTML = '';
+  Array.from(hashtags).slice(0,8).forEach(tag => {
+    const div = document.createElement('div');
+    div.className = 'nav-tab';
+    div.textContent = '#' + tag;
+    div.dataset.filter = tag;
+    div.onclick = () => filterContent(tag, div);
+    container.appendChild(div);
+  });
+}
+
+// ─── INIT ────────────────────────────────────────────────────────────────────
+
+async function init() {
+  // Header scroll effect
+  window.addEventListener('scroll', () => {
+    document.getElementById('app-header').classList.toggle('scrolled', window.scrollY > 10);
+  });
+
+  // Get pinned
+  getPinnedMessage().then(async pin => {
+    if (pin) {
+      pinnedMessage = pin;
+      const text = pin.caption || pin.text || '';
+      const title = cleanCaption(text) || 'Latest Drop';
+      const videoUrl = extractVideoUrl(text);
+      const thumb = await getThumbnail(pin);
+      document.getElementById('hero-title').textContent = title.substring(0,60) + (title.length>60?'…':'');
+      document.getElementById('hero-date').innerHTML = `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> ${formatDate(pin.date)}`;
+      if (thumb) { const img = document.getElementById('hero-thumb'); img.src=thumb; img.style.display='block'; }
+      const btn = document.getElementById('hero-btn');
+      btn.dataset.url = videoUrl || '';
+      btn.dataset.title = title;
+      btn.dataset.text = text;
+    }
+  });
+
+  // Load messages
+  try {
+    const msgs = await loadChannelMessages();
+    allMessages = msgs;
+    const parsed = msgs.map(parseMessage);
+    videoMessages = parsed.filter(p => p.isVideo);
+    productMessages = parsed.filter(p => p.isProduct && !p.isVideo);
+
+    buildDynamicTabs(parsed);
+
+    // If no videos found via updates, show demo content
+    if (!videoMessages.length && !productMessages.length) {
+      showDemoContent();
+      return;
+    }
+
+    await renderVideos(videoMessages);
+    await renderProducts(productMessages);
+
+    // Set hero from first video if no pinned
+    if (!pinnedMessage && videoMessages.length) {
+      const {msg} = videoMessages[0];
+      const thumb = await getThumbnail(msg);
+      buildVideoCard(msg, thumb, true);
+    }
+  } catch(e) {
+    console.error('Init error:', e);
+    showDemoContent();
+  }
+}
+
+function showDemoContent() {
+  showToast('Connect your Telegram channel to see content');
+  document.getElementById('hero-title').textContent = 'Exclusive Premium Content';
+  document.getElementById('hero-date').innerHTML = `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Live`;
+  
+  // Demo video cards
+  const demoVideos = [
+    { title: 'Exclusive Drop #1', views: 12400, tag: '#video' },
+    { title: 'Hot New Release', views: 8900, tag: '#video #trending' },
+    { title: 'Behind the Scenes', views: 5600, tag: '#video #new' },
+  ];
+  const scroll = document.getElementById('video-scroll');
+  const grid = document.getElementById('video-grid');
+  scroll.innerHTML = ''; grid.innerHTML = '';
+  demoVideos.forEach(v => {
+    [scroll, grid].forEach(container => {
+      const card = document.createElement('div');
+      card.className = 'video-card';
+      card.style.width = container === scroll ? '200px' : '';
+      card.innerHTML = `
+        <div class="video-thumb-wrap">
+          <div class="thumb-placeholder" style="position:relative;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1.5"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+          </div>
+          <div class="views-badge"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>${formatViews(v.views)}</div>
+        </div>
+        <div class="video-info">
+          <div class="video-title">${v.title}</div>
+          <div class="video-date">From Telegram Channel</div>
+        </div>`;
+      card.onclick = () => showToast('Post #video tagged videos in your channel');
+      container.appendChild(card);
+    });
+  });
+
+  // Demo products
+  const demoProducts = [
+    { name: 'Premium Access Pack', price: '₦5,000' },
+    { name: 'VIP Membership', price: '₦10,000' },
+    { name: 'Exclusive Bundle', price: '₦7,500' },
+    { name: 'Special Offer', price: '₦3,000' },
+  ];
+  const pgrid = document.getElementById('product-grid');
+  const pscroll = document.getElementById('store-preview-scroll');
+  pgrid.innerHTML = ''; pscroll.innerHTML = '';
+  demoProducts.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.innerHTML = `
+      <div class="product-thumb-wrap" style="min-height:120px;">
+        <div style="width:100%;height:100%;min-height:120px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(139,0,0,0.15),#0d0d0d);">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+        </div>
+        <div class="product-overlay"></div>
+        <div class="price-tag">${p.price}</div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">${p.name}</div>
+        <button class="order-btn" onclick="orderNow(event)">Order Now</button>
+      </div>`;
+    pgrid.appendChild(card);
+
+    const prev = document.createElement('div');
+    prev.className = 'video-card';
+    prev.style.width = '150px';
+    prev.innerHTML = `
+      <div style="aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(139,0,0,0.15),#0d0d0d);">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/></svg>
+      </div>
+      <div style="padding:8px 10px;">
+        <div class="video-title">${p.name}</div>
+        <div style="font-size:0.65rem;color:var(--gold);margin-top:3px;">${p.price}</div>
+      </div>`;
+    prev.onclick = () => switchTab('store');
+    pscroll.appendChild(prev);
+  });
+}
+
+// Kick off
+init();
+</script>
+</body>
+</html>
